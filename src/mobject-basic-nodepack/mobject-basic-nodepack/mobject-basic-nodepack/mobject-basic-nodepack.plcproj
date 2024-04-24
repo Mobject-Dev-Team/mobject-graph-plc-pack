@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5334d0eb-26fa-4a9f-bf34-4700c54292c2}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>mobject_basic_nodepack</Name>
+    <ProgramVersion>3.1.4024.0</ProgramVersion>
+    <Application>{81c63ebe-f563-4c45-8961-dc9eece7caa2}</Application>
+    <TypeSystem>{6267174d-b025-4559-9e68-7e325e517c92}</TypeSystem>
+    <Implicit_Task_Info>{c952a48d-cc62-4fce-bbdc-b67b85581a82}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{88c3130c-9386-4f49-b24f-a17975e580d8}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{abe36ef5-ce87-4580-bb71-7588c3c60f72}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{3e0a84f1-ed05-4c7e-acf2-7f00cbc7ae46}</LibraryReferences>
+    <Company>mobject</Company>
+    <Released>false</Released>
+    <Title>mobject-basic-nodepack</Title>
+    <ProjectVersion>0.1.0</ProjectVersion>
+    <LibraryCategories>
+      <LibraryCategory xmlns="">
+        <Id>{1060d52a-c0ce-4c5f-a334-01a7e2e0ab1e}</Id>
+        <Version>1.0.0.0</Version>
+        <DefaultName>mobject</DefaultName>
+      </LibraryCategory>
+    </LibraryCategories>
+    <SelectedLibraryCategories>
+      <Id xmlns="">{1060d52a-c0ce-4c5f-a334-01a7e2e0ab1e}</Id>
+    </SelectedLibraryCategories>
+    <DefaultNamespace>mobject-basic-nodepack</DefaultNamespace>
+    <Placeholder>mobject-basic-nodepack</Placeholder>
+    <Author>mobject dev team</Author>
+    <CombineIds>true</CombineIds>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BasicNodePack.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Display\BooleanDisplayNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Display\IntDisplayNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hardware\DigitalInputNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Hardware\DigitalOutputNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Literals\BooleanLiteralNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Literals\IntLiteralNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Display" />
+    <Folder Include="Hardware" />
+    <Folder Include="Literals" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mobject-basic-nodepack.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryReference Include="mobject-basic-datatypes,0.1.0,mobject">
+      <Namespace>mobject_basic_datatypes</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="mobject-graph,0.1.0,mobject">
+      <Namespace>mobject_graph</Namespace>
+    </LibraryReference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

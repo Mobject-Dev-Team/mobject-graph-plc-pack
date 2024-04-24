@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="DigitalOutputNode" Id="{dd869760-f957-0bac-31af-1bd429b9281a}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK FINAL DigitalOutputNode EXTENDS Node
+VAR
+	output AT %Q* : BOOL;
+	in : _BOOL(FALSE);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{4b21e14f-72a9-0611-3816-1f59f4f3993b}" />
+    <Method Name="Clone" Id="{9dfcfd9e-d7af-0d1b-1b09-7f7f5ba32f6e}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Node
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Clone := this^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Dispose" Id="{243c72bb-1c3c-0767-15c6-bdd475740fb7}">
+      <Declaration><![CDATA[METHOD Dispose
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{9217c167-bb8e-0126-2c25-3bac908a8259}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddInput('in', in);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{3b63c1c9-858d-0785-29d0-25dfdef95927}">
+      <Declaration><![CDATA[METHOD PROTECTED OnExecute : HRESULT
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[output := in.value;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
