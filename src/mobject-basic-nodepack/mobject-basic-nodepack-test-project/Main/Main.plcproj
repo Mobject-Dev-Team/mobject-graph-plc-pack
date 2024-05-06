@@ -47,7 +47,7 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="mobject-basic-nodepack,0.2.0,mobject">
+    <LibraryReference Include="mobject-basic-nodepack,0.3.0,mobject">
       <Namespace>mobject_basic_nodepack</Namespace>
     </LibraryReference>
   </ItemGroup>

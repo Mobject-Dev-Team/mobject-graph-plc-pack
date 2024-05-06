@@ -6,12 +6,6 @@
 {attribute 'enable_dynamic_creation'}
 FUNCTION_BLOCK BasicNodePack IMPLEMENTS I_NodePack
 VAR
-	booleanLiteralNode : BooleanLiteralNode;
-	booleanDisplayNode : BooleanDisplayNode;
-	intLiteralNode : IntLiteralNode;
-	intDisplayNode : IntDisplayNode;
-	realLiteralNode : RealLiteralNode;
-	realDisplayNode : RealDisplayNode;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -24,12 +18,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[NodeFactory.AddNodeAsPrototype('PlcBasic.Bool.BoolLiteral',booleanLiteralNode);
-NodeFactory.AddNodeAsPrototype('PlcBasic.Bool.BoolDisplay',booleanDisplayNode);
-NodeFactory.AddNodeAsPrototype('PlcBasic.Int.IntLiteral',intLiteralNode);
-NodeFactory.AddNodeAsPrototype('PlcBasic.Int.IntDisplay',intDisplayNode);
-NodeFactory.AddNodeAsPrototype('PlcBasic.Real.RealLiteral',realLiteralNode);
-NodeFactory.AddNodeAsPrototype('PlcBasic.Real.RealDisplay',realDisplayNode);]]></ST>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
   </POU>

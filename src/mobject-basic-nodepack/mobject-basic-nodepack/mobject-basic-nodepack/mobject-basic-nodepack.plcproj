@@ -19,7 +19,7 @@
     <Company>mobject</Company>
     <Released>false</Released>
     <Title>mobject-basic-nodepack</Title>
-    <ProjectVersion>0.2.0</ProjectVersion>
+    <ProjectVersion>0.3.0</ProjectVersion>
     <LibraryCategories>
       <LibraryCategory xmlns="">
         <Id>{1060d52a-c0ce-4c5f-a334-01a7e2e0ab1e}</Id>
@@ -39,35 +39,15 @@
     <Compile Include="BasicNodePack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Display\BooleanDisplayNode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Display\IntDisplayNode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Display\RealDisplayNode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Hardware\DigitalInputNode.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Hardware\DigitalOutputNode.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Literals\BooleanLiteralNode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Literals\IntLiteralNode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Literals\RealLiteralNode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Display" />
     <Folder Include="Hardware" />
-    <Folder Include="Literals" />
   </ItemGroup>
   <ItemGroup>
     <None Include="mobject-basic-nodepack.tmc">
@@ -75,13 +55,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="mobject-basic-datatypes,0.2.0,mobject">
+    <LibraryReference Include="mobject-basic-datatypes,0.3.0,mobject">
       <Namespace>mobject_basic_datatypes</Namespace>
     </LibraryReference>
-    <LibraryReference Include="mobject-datatypes,0.5.0,mobject">
+    <LibraryReference Include="mobject-datatypes,0.6.0,mobject">
       <Namespace>mobject_datatypes</Namespace>
     </LibraryReference>
-    <LibraryReference Include="mobject-graph,0.2.0,mobject">
+    <LibraryReference Include="mobject-graph,0.3.0,mobject">
       <Namespace>mobject_graph</Namespace>
     </LibraryReference>
   </ItemGroup>

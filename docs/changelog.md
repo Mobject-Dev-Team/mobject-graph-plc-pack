@@ -1,12 +1,18 @@
 # Changelog
 
+## v0.3.0-alpha
+
+- added support for mobject-graph v0.3.0
+- added support for mobject-datatypes v0.6.0
+- removed literal and display nodes as these are now automatically created by mobject-graph.
+
 ## v0.2.0-alpha
 
-- Added REAL literal and display
-- Updated to support mobject-graph v0.2.0
-- Updated to support mobject-basic-datatypes v0.2.0
-- Updated to support mobject-datatypes v0.5.0
+- added REAL literal and display
+- updated to support mobject-graph v0.2.0
+- updated to support mobject-basic-datatypes v0.2.0
+- updated to support mobject-datatypes v0.5.0
 
 ## v0.1.0-alpha
 
-- Initial code
+- initial code
