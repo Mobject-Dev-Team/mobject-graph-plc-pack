@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.5.0-alpha
+
+- added support for mobject-basic-datatypes v0.5.0
+- added support for mobject-datatypes v0.9.0
+- added support for mobject-graph v0.5.0
+
 ## v0.4.0-alpha
 
 - added support for mobject-basic-datatypes v0.4.0
