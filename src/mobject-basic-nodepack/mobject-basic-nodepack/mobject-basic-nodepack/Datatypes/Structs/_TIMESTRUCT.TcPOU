@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="_TIMESTRUCT" Id="{e562b4d5-1171-0283-3cd5-573928ea5f08}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _TIMESTRUCT EXTENDS StructuredDatatypeBase
+VAR
+	localData : TIMESTRUCT;
+	activeData : REFERENCE TO TIMESTRUCT REF= localData;
+	_wYear : _WORD(localData.wYear);
+	_wMonth : _WORD(localData.wMonth);
+	_wDayOfWeek : _WORD(localData.wDayOfWeek);
+	_wDay : _WORD(localData.wDay);
+	_wHour : _WORD(localData.wHour);
+	_wMinute : _WORD(localData.wMinute);
+	_wSecond : _WORD(localData.wSecond);
+	_wMilliseconds : _WORD(localData.wMilliseconds);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{a76fe964-4813-0dcc-3a87-52590a5beee4}" />
+    <Folder Name="Protected" Id="{b9713e34-49dc-0c25-27b9-d826f124e7e3}" />
+    <Property Name="Address" Id="{bb392fc3-3f0a-0e40-3700-c5663ef20063}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{6c22c66d-e36f-0aa4-2e36-5137ed472e2a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{2cb1a7a5-525f-094b-192a-13a283037e83}">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetMemberReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{351d97c3-851a-0daa-253f-1e9867ba5cc1}">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_TIMESTRUCT());
+pClone^.Value := Value;
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{de249045-14c0-0c8e-3c32-9e332517c285}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SetMemberReference();
+AddMember('wYear',_wYear);
+AddMember('wMonth',_wMonth);
+AddMember('wDayOfWeek',_wDayOfWeek);
+AddMember('wDay',_wDay);
+AddMember('wHour',_wHour);
+AddMember('wMinute',_wMinute);
+AddMember('wSecond',_wSecond);
+AddMember('wMilliseconds',_wMilliseconds);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{320cbb58-8004-0152-2111-dbc950bf6d4d}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{22f478c1-48ff-0d8c-1e28-359278e8bec7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'TIMESTRUCT';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="MakeReferenceTo" Id="{212e5344-3a4d-0d8c-22d5-17c348eff1df}">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetMemberReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetMemberReference" Id="{153ff1cd-4750-0dd7-22e7-155c91555b63}" FolderPath="Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetMemberReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_wYear.MakeReferenceTo(activeData.wYear);
+_wMonth.MakeReferenceTo(activeData.wMonth);
+_wDayOfWeek.MakeReferenceTo(activeData.wDayOfWeek);
+_wDay.MakeReferenceTo(activeData.wDay);
+_wHour.MakeReferenceTo(activeData.wHour);
+_wMinute.MakeReferenceTo(activeData.wMinute);
+_wSecond.MakeReferenceTo(activeData.wSecond);
+_wMilliseconds.MakeReferenceTo(activeData.wMilliseconds);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{212b9de1-90be-01f3-0673-9ded294ddc75}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{541f10ed-fb82-0760-3537-2ccba0ff1404}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="TryMakeReferenceTo" Id="{436cbb68-52af-07f8-1875-c0f6af217281}">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	pTargetData : POINTER TO TIMESTRUCT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT (Target.TypeName = TypeName) THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetMemberReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{aae5b600-b6e3-0a73-2071-e343a31d09f7}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : REFERENCE TO TIMESTRUCT]]></Declaration>
+      <Get Name="Get" Id="{595b6fc1-b502-08e3-2f56-be28310fd013}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value REF= activeData;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wDay" Id="{bdfde783-bbe0-0f05-2fda-747386cce035}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wDay : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{2ff1f2ca-f10f-022c-12ce-cb56c90848c2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wDay REF= _wDay;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wDayOfWeek" Id="{b3a7e28e-5e16-0746-0099-3fb50c70e777}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wDayOfWeek : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{f945a899-5b24-0781-3fef-24a9bc7b1ba0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wDayOfWeek REF= _wDayOfWeek;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wHour" Id="{91565ed2-d330-0a7e-029e-facc5a7353e9}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wHour : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{0672e413-fccd-0ef3-08cb-16aef2b34fd1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wHour REF= _wHour;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wMilliseconds" Id="{9bf32d92-8c98-07f4-25c8-2d263c2e8511}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wMilliseconds : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{ae5e8915-e489-039a-29fa-4de80ddbf57b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wMilliseconds REF= _wMilliseconds;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wMinute" Id="{eed4cd1f-750b-0370-146a-dd8fe50b813b}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wMinute : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{4e73a3f3-2a8c-07c4-18aa-47c3230d9fee}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wMinute REF= _wMinute;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wMonth" Id="{d96efd92-1a68-076b-05e4-58cd4947e090}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wMonth : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{ed0b569c-4b98-0032-1e14-b67eb11dcc84}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wMonth REF= _wMonth;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wSecond" Id="{e04a2f03-75e0-017e-0a3c-599b1fc68072}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wSecond : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{6693ddd6-0041-0cf1-28c4-85d4dba95088}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wSecond REF= _wSecond;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="wYear" Id="{078594f1-8bdb-0fe3-398d-a39a54b63005}">
+      <Declaration><![CDATA[PROPERTY PUBLIC wYear : Reference to _WORD]]></Declaration>
+      <Get Name="Get" Id="{127c4742-51e2-07ee-030e-9d54b8131862}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[wYear REF= _wYear;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
