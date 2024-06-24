@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{36b36f8a-a348-0c74-3be2-6eb63b35e7db}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	
+	//alias
+    _FLOAT_TestSuite : _FLOAT_TestSuite;
+	_HRESULT_TestSuite : _HRESULT_TestSuite;
+    
+	// struct
+	_TIMESTRUCT_TestSuite : _TIMESTRUCT_TestSuite;
+	
+	// enums
+	_E_TcEventClass_TestSuite : _E_TcEventClass_TestSuite;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TcUnit.RUN();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

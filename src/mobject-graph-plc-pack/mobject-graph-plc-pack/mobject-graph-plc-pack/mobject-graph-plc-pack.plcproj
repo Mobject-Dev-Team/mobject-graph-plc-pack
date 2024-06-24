@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{aaf6baf3-4bee-4e84-9203-f3e1f071f773}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>mobject_graph_plc_pack</Name>
+    <ProgramVersion>3.1.4024.0</ProgramVersion>
+    <Application>{ab0a03e4-2a66-462b-ac1f-44e88bef4f0e}</Application>
+    <TypeSystem>{03fc8bed-e1a0-4250-aad7-0d56ae20aefa}</TypeSystem>
+    <Implicit_Task_Info>{51926b74-dafb-4e68-a91d-b76c1b33054f}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{9ff7db7d-64d3-4c28-bfc3-cab6cc4891be}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{0add2412-8c4c-4453-81cd-4bfaa460aa19}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{8a91c800-8101-4755-b4dd-e059a0262ccb}</LibraryReferences>
+    <LibraryCategories>
+      <LibraryCategory xmlns="">
+        <Id>{1060d52a-c0ce-4c5f-a334-01a7e2e0ab1e}</Id>
+        <Version>1.0.0.0</Version>
+        <DefaultName>mobject</DefaultName>
+      </LibraryCategory>
+    </LibraryCategories>
+    <SelectedLibraryCategories>
+      <Id xmlns="">{1060d52a-c0ce-4c5f-a334-01a7e2e0ab1e}</Id>
+    </SelectedLibraryCategories>
+    <Released>false</Released>
+    <Company>mobject</Company>
+    <Title>mobject-graph-plc-pack</Title>
+    <ProjectVersion>0.8.0</ProjectVersion>
+    <DefaultNamespace>mobject-graph-plc-pack</DefaultNamespace>
+    <Placeholder>mobject-graph-plc-pack</Placeholder>
+    <Author>mobject dev team</Author>
+    <CombineIds>true</CombineIds>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Datatypes" />
+    <Folder Include="Datatypes\Alias" />
+    <Folder Include="Datatypes\Enums" />
+    <Folder Include="Datatypes\Structs" />
+    <Folder Include="Nodes" />
+    <Folder Include="Nodes\Hardware" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PlcDatatypePack.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcNodePack.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Datatypes\Alias\_FLOAT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Datatypes\Alias\_HRESULT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Datatypes\Enums\_E_TcEventClass.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Datatypes\Structs\_TIMESTRUCT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Hardware\DigitalInputNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Hardware\DigitalOutputNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryReference Include="mobject-core,0.1.0,mobject">
+      <Namespace>mobject_core</Namespace>
+    </LibraryReference>
+    <LibraryReference Include="mobject-graph,0.7.0,mobject">
+      <Namespace>mobject_graph</Namespace>
+    </LibraryReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Utilities">
+      <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Utilities</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mobject-graph-plc-pack.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

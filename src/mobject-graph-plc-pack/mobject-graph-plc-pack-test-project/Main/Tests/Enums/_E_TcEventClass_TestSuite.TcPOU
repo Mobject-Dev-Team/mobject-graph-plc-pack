@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="_E_TcEventClass_TestSuite" Id="{118a6cf8-981c-4ffa-ae55-7c23689cb4d0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK _E_TcEventClass_TestSuite EXTENDS TcUnit.FB_TestSuite
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TestAddress();
+TestClearReference();
+TestClone();
+TestTypeNameReturnsExpected();
+TestIdentifierReturnsExpected();
+TestMakeReferenceToFollowsReference();
+TestMakeReferenceToUpdatesReference();
+TestSize();
+TestValueReturnsExpectedAfterInit();
+TestValueReturnsExpectedAfterChange();
+TestSerializeTypeWith();
+TestSerializeWith();
+TestTryDeserializeFrom();
+TestTryMakeReferenceToFollowsReference();
+TestTryMakeReferenceToUpdatesReference();
+]]></ST>
+    </Implementation>
+    <Method Name="TestAddress" Id="{9068e0a6-2e76-45ba-a121-76779aa597bd}">
+      <Declaration><![CDATA[METHOD PUBLIC TestAddress
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);
+    notExpected : PVOID := 0;
+    actual : PVOID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestAddress');
+
+actual := _type.Address;
+
+AssertFalse(
+    Condition := (notExpected = actual),
+    Message := 'Type did not return a valid address.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestClearReference" Id="{b909d4c7-a707-40c4-99c4-98ada16d20e7}">
+      <Declaration><![CDATA[METHOD PUBLIC TestClearReference
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);
+	target : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_NONE;
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_NONE;
+    actual : E_TcEventClass;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestClearReference');
+
+_type.MakeReferenceTo(target);
+_type.ClearReference();
+target := E_TcEventClass.TCEVENTCLASS_ALARM;
+
+actual := _type.Value;
+
+AssertEquals(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Value did not follow target change'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestClone" Id="{82c574a4-0b78-4179-9ac7-2ffaa030b90c}">
+      <Declaration><![CDATA[METHOD PUBLIC TestClone
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);
+	clone : I_Datatype;
+	isValidClone : BOOL;
+	compareResult : DINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestClone');
+
+clone := _type.Clone();
+
+isValidClone := clone <> 0;
+
+IF isValidClone THEN
+	compareResult := memcmp(_type.Address, clone.Address, clone.Size);
+END_IF
+
+AssertTrue(
+	Condition := isValidClone,
+	Message := 'Clone did not produce a clone'
+);
+
+AssertEquals_DINT(
+	Expected := 0,
+    Actual := compareResult,
+    Message := 'Clone did not return a valid clone.'
+);
+
+clone.Dispose();
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestIdentifierReturnsExpected" Id="{d4528d67-bd62-4021-9d1b-8ab0ca6a80a5}">
+      <Declaration><![CDATA[METHOD PUBLIC TestIdentifierReturnsExpected
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+    expected : STRING := 'E_TcEventClass';
+    actual : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestIdentifierReturnsExpected');
+
+actual := _type.Identifier;
+
+AssertEquals_STRING(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Type did not return correct iec type.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestMakeReferenceToFollowsReference" Id="{73ed5ef9-a929-4079-891b-115d830fc21a}">
+      <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToFollowsReference
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+	target : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_NONE;
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_ALARM;
+    actual : E_TcEventClass;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestMakeReferenceToFollowsReference');
+
+_type.MakeReferenceTo(target);
+target := E_TcEventClass.TCEVENTCLASS_ALARM;
+
+actual := _type.Value;
+
+AssertEquals(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Value did not follow target change'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestMakeReferenceToUpdatesReference" Id="{be75c62b-3e7e-477f-baad-b27575876dc9}">
+      <Declaration><![CDATA[METHOD PUBLIC TestMakeReferenceToUpdatesReference
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+	target : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_NONE;
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_ALARM;
+    actual : E_TcEventClass;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestMakeReferenceToUpdatesReference');
+
+_type.MakeReferenceTo(target);
+_type.Value := E_TcEventClass.TCEVENTCLASS_ALARM;
+
+actual := target;
+
+AssertEquals(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Value did not update target'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestSerializeTypeWith" Id="{18ed4db8-7899-4cc1-a9b4-5f99ffb60315}">
+      <Declaration><![CDATA[METHOD PUBLIC TestSerializeTypeWith
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);
+    serializer : JsonSerializer;
+    expected : STRING(500) := '{"typeName":"ENUM","identifier":"E_TcEventClass","enumerations":["TCEVENTCLASS_NONE","TCEVENTCLASS_MAINTENANCE","TCEVENTCLASS_MESSAGE","TCEVENTCLASS_HINT","TCEVENTCLASS_STATEINFO","TCEVENTCLASS_INSTRUCTION","TCEVENTCLASS_WARNING","TCEVENTCLASS_ALARM","TCEVENTCLASS_PARAMERROR"],"baseType":{"typeName":"UINT","minValue":0,"maxValue":65535,"isSigned":false,"isFloat":false}}';
+    actual : STRING(500);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestSerializeTypeWith');
+
+serializer.Reset();
+_type.SerializeTypeWith(serializer);
+serializer.TryGetSerializedData(ADR(actual), SIZEOF(actual));
+
+AssertEquals_STRING(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Serialization of type did not return correct string.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestSerializeWith" Id="{71997afe-b672-419b-9bd3-5c48ea8a620a}">
+      <Declaration><![CDATA[METHOD PUBLIC TestSerializeWith
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_ALARM);
+    serializer : JsonSerializer;
+    expected : STRING := '"TCEVENTCLASS_ALARM"';
+    actual : STRING(500);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestSerializeWith');
+
+serializer.Reset();
+_type.SerializeWith(serializer);
+serializer.TryGetSerializedData(ADR(actual), SIZEOF(actual));
+
+AssertEquals_STRING(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Serialization of type data did not return correct string.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestSize" Id="{1476fd60-3dd6-472d-b21d-cf754fcd6703}">
+      <Declaration><![CDATA[METHOD PUBLIC TestSize
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+    expected : UDINT := SIZEOF(E_TcEventClass);
+    actual : UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestSize');
+
+actual := _type.Size;
+
+AssertEquals_UDINT(
+    Expected := Expected,
+    Actual := actual,
+    Message := 'Type did not return the correct size.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestTryDeserializeFrom" Id="{95e49c70-c1cd-45a6-9158-2d9138629992}">
+      <Declaration><![CDATA[METHOD PUBLIC TestTryDeserializeFrom
+VAR
+    deserializer : JsonDeserializer;
+    feedback : DeserializerFeedback;
+    json : STRING := '"TCEVENTCLASS_ALARM"';
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_ALARM;
+    actual : E_TcEventClass;
+ END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestTryDeserializeFrom');
+
+deserializer.Reset();
+deserializer.TryLoad(json);
+_type.TryDeserializeFrom(Deserializer, Feedback);
+
+actual := _type.Value;
+
+AssertEquals_LREAL(
+    Expected := expected,
+    Actual := actual,
+    Delta := LREAL#0.001,
+    Message := 'Type did not deserialize correctly.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestTryMakeReferenceToFollowsReference" Id="{9aa1115f-667a-4f34-9b77-99735677047c}">
+      <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToFollowsReference
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+	target : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_ALARM;
+    actual : E_TcEventClass;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestTryMakeReferenceToFollowsReference');
+
+_type.TryMakeReferenceTo(target);
+target.Value := E_TcEventClass.TCEVENTCLASS_ALARM;
+
+actual := _type.Value;
+
+AssertEquals(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Value did not follow target change'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestTryMakeReferenceToUpdatesReference" Id="{5241f39b-037a-4406-891e-3c5e19c6bf5c}">
+      <Declaration><![CDATA[METHOD PUBLIC TestTryMakeReferenceToUpdatesReference
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+	target : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_ALARM;
+    actual : E_TcEventClass;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestTryMakeReferenceToUpdatesReference');
+
+_type.TryMakeReferenceTo(target);
+_type.Value := E_TcEventClass.TCEVENTCLASS_ALARM;
+
+actual := target.Value;
+
+AssertEquals(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Value did not update target'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestTypeNameReturnsExpected" Id="{47896d7b-8a29-4d12-8680-14e28ca0bd11}">
+      <Declaration><![CDATA[METHOD PUBLIC TestTypeNameReturnsExpected
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+    expected : STRING := 'ENUM';
+    actual : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestTypeNameReturnsExpected');
+
+actual := _type.TypeName;
+
+AssertEquals_STRING(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Type did not return correct iec type.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestValueReturnsExpectedAfterChange" Id="{2ef76bba-8d65-4995-86bd-6d292484b02c}">
+      <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterChange
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);;
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_ALARM;
+    actual : E_TcEventClass;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestValueReturnsExpectedAfterChange');
+
+_type.Value := E_TcEventClass.TCEVENTCLASS_ALARM;
+
+actual := _type.Value;
+
+AssertEquals(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Expected value not returned after change.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestValueReturnsExpectedAfterInit" Id="{37dbacd6-3818-4bfe-9a53-db04ad7cb0c3}">
+      <Declaration><![CDATA[METHOD PUBLIC TestValueReturnsExpectedAfterInit
+VAR
+    _type : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_ALARM);
+    expected : E_TcEventClass := E_TcEventClass.TCEVENTCLASS_ALARM;
+    actual : E_TcEventClass;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestValueReturnsExpectedAfterInit');
+
+actual := _type.Value;
+
+AssertEquals(
+    Expected := expected,
+    Actual := actual,
+    Message := 'Expected value not returned after Init.'
+);
+
+TEST_FINISHED();
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

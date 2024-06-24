@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.8.0-alpha
+
+- name change to mobject-graph-plc-pack
+
 ## v0.7.0-alpha
 
 - added support for mobject-core v0.1.0, removed all others

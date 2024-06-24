@@ -6,9 +6,9 @@
 
 > A framework and guide for writing object oriented programs in structured text.
 
-## The mobject-basic-nodepack Library
+## The mobject-graph-plc-pack Library
 
-This is an extension to [mobject-graph](https://graph.mobject.org) library. This library contains nodes typically found in plc programming.
+This is an extension to [mobject-graph](https://graph.mobject.org) library. This library contains nodes and datatypes typically found in plc programming.
 
 ## What is mobject?
 

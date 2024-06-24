@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PlcDatatypePack" Id="{41aa96c4-4e58-0595-14c8-fb1325f46fff}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK PlcDatatypePack IMPLEMENTS I_DatatypePack
+VAR
+	
+	// alias
+    _float : _FLOAT(0.0);
+	_hresult : _HRESULT(0);
+
+	// enums
+	_e_TcEventClass : _E_TcEventClass(E_TcEventClass.TCEVENTCLASS_NONE);
+	
+	// structures
+	_timestruct : _TIMESTRUCT();
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="RegisterWith" Id="{5bfb729e-cc5d-077c-086c-02393210cdae}">
+      <Declaration><![CDATA[METHOD RegisterWith
+VAR_INPUT
+	Datatypes : I_Datatypes;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// alias
+Datatypes.RegisterDatatype(_float);
+Datatypes.RegisterDatatype(_hresult);
+
+// enums
+
+Datatypes.RegisterDatatype(_e_TcEventClass);
+
+// structures
+Datatypes.RegisterDatatype(_timestruct);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

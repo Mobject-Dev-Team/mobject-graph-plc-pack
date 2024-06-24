@@ -2,7 +2,7 @@
 
   - [Welcome](/)
 
-- mobject-basic-nodepack
+- mobject-graph-plc-pack
 
 - Guides
 
