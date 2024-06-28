@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PlcPack" Id="{8facb200-c082-02e8-236e-e0e530d5058a}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK PlcPack IMPLEMENTS I_GraphPack
+VAR
+	plcDatatypePack : PlcDatatypePack;
+	plcNodePack : PlcNodePack;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="RegisterWithDatatypes" Id="{0a154ece-cf7f-0f89-3e29-444896e95ff6}">
+      <Declaration><![CDATA[METHOD RegisterWithDatatypes
+VAR_INPUT
+	Datatypes : I_Datatypes;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[plcDatatypePack.RegisterWithDatatypes(Datatypes);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RegisterWithNodeFactory" Id="{f8f0b1d2-e1ed-0617-3165-a2c077d3946f}">
+      <Declaration><![CDATA[METHOD PUBLIC RegisterWithNodeFactory
+VAR_INPUT
+	NodeFactory : I_NodeFactory;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[plcNodePack.RegisterWithNodeFactory(NodeFactory);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

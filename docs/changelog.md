@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.10.0-alpha
+
+- added support for mobject-graph v0.9.0
+- new style of installation using I_GraphPack
+- updated to support mobject-core v0.3.0
+
 ## v0.9.0-alpha
 
 - added support for mobject-core v0.2.0
