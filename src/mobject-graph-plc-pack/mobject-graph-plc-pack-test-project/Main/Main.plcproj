@@ -30,7 +30,13 @@
     <Compile Include="Tests\Alias\_HRESULT_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\Arrays\_Array0to7OfByte_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\Enums\_E_TcEventClass_TestSuite.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\Structs\_GUID_TestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\Structs\_TIMESTRUCT_TestSuite.TcPOU">
@@ -42,6 +48,7 @@
     <Folder Include="Tests" />
     <Folder Include="Tests\Alias" />
     <Folder Include="Tests\Enums" />
+    <Folder Include="Tests\Arrays" />
     <Folder Include="Tests\Structs" />
   </ItemGroup>
   <ItemGroup>

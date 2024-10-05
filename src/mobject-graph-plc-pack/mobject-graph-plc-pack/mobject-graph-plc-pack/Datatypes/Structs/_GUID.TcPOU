@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="_GUID" Id="{5e7bbac9-c4a8-0649-10f9-d9feb8ae2aa6}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK _GUID EXTENDS StructuredDatatypeBase
+VAR
+	localData : GUID;
+	activeData : REFERENCE TO GUID REF= localData;
+	_data1 : _DWORD(localData.data1);
+	_data2 : _WORD(localData.data2);
+    _data3 : _WORD(localData.data3);
+	_data4 : _Array0To7OfByte();
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Core" Id="{faff66e1-6cc2-0883-1e20-0bb74cf557b8}" />
+    <Folder Name="Customize" Id="{d5de4252-d53c-0013-1ac5-7758b83acdd3}">
+      <Folder Name="Constructor" Id="{5aaad80f-8f51-046e-3f0d-75d04d1d74ea}" />
+      <Folder Name="Protected" Id="{66526ab6-f311-0a78-0619-5a57309e1b72}" />
+    </Folder>
+    <Property Name="Address" Id="{0cb20636-ee3e-01f1-3b51-9139c247c1cc}" FolderPath="Core\">
+      <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{01032027-9342-0e84-1b82-0bb6e139658d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ClearReference" Id="{c2a97085-7888-0c10-0e01-c77c9f87e733}" FolderPath="Core\">
+      <Declaration><![CDATA[METHOD PUBLIC ClearReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= localData;
+SetMemberReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clone" Id="{fe78a8ef-e01b-0937-3381-468b4c03e575}" FolderPath="Customize\">
+      <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
+VAR
+    pClone : POINTER TO _GUID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(_GUID());
+pClone^.Value := Value;
+Clone := pClone^;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Data1" Id="{eeb46d53-a9e9-0f0c-2162-e34536f68679}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Data1 : REFERENCE TO _DWORD]]></Declaration>
+      <Get Name="Get" Id="{b7cb77c3-3e34-0dfc-280e-956c7b33f5cd}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Data1 REF= _data1;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Data2" Id="{536a1bb5-8013-0194-2ad5-2cf63a1e1a4f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Data2 : REFERENCE TO _WORD]]></Declaration>
+      <Get Name="Get" Id="{c88f8fd0-f6da-0316-3df5-ae60ef437eec}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Data2 REF= _data2;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Data3" Id="{dcd5fc93-482c-0178-3d78-23cdbba65df7}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Data3 : REFERENCE TO _WORD]]></Declaration>
+      <Get Name="Get" Id="{f76a9479-2db7-0a5e-0778-410dde1f7ef0}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Data3 REF= _data3;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Data4" Id="{2683ad33-bd0c-014f-2d43-9ab870748340}">
+      <Declaration><![CDATA[PROPERTY PUBLIC Data4 : REFERENCE TO _Array0To7OfByte]]></Declaration>
+      <Get Name="Get" Id="{42b6c1e8-50a4-0edb-1ca5-81057c48bdf4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Data4 REF= _data4;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="FB_init" Id="{80043828-9119-041e-3a5b-a48067e852f2}" FolderPath="Customize\Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SetMemberReference();
+AddMember('Data1',_data1);
+AddMember('Data2',_data2);
+AddMember('Data3',_data3);
+AddMember('Data4',_data4);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Identifier" Id="{157e827a-c640-08f7-2d7b-76c036317fae}" FolderPath="Customize\">
+      <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
+      <Get Name="Get" Id="{03ad7d2a-6b9c-0895-38b4-a8f98d91d489}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Identifier := 'GUID';]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="IsValidGuidString" Id="{34f81f48-80a2-0ded-1d56-bc7e26ea9862}" FolderPath="Customize\">
+      <Declaration><![CDATA[METHOD PROTECTED IsValidGuidString : BOOL
+VAR_INPUT
+	GuidAsString : STRING;
+END_VAR
+VAR
+	position : INT;
+	stringIndex : INT;
+	dashCount : INT := 0;
+END_VAR
+VAR CONSTANT
+	CHARACTER_HYPHEN : BYTE := 16#2D;
+	CHARACTER_0 : BYTE := 16#30;
+	CHARACTER_9 : BYTE := 16#39;
+	CHARACTER_A : BYTE := 16#41;
+	CHARACTER_F : BYTE := 16#46;
+	CHARACTER_LCASE_A : BYTE := 16#61;
+	CHARACTER_LCASE_F : BYTE := 16#66;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Check the overall length of the string (36 including 4 dashes)
+IF LEN(GuidAsString) <> 36 THEN
+	RETURN;
+END_IF
+
+// Check each character
+FOR position := 1 TO 36 DO
+	stringIndex := position - 1; 
+	CASE position OF
+		9, 14, 19, 24:
+			// Dashes should be at positions 9, 14, 19, 24
+			IF GuidAsString[stringIndex] <> CHARACTER_HYPHEN THEN
+				RETURN;
+			ELSE
+				dashCount := dashCount + 1;
+			END_IF
+		ELSE
+			// All other positions should contain hex digits (0-9, A-F, a-f)
+			IF NOT ((GuidAsString[stringIndex] >= CHARACTER_0 AND GuidAsString[stringIndex] <= CHARACTER_9) OR 
+				(GuidAsString[stringIndex] >= CHARACTER_A AND GuidAsString[stringIndex] <= CHARACTER_F) OR 
+				(GuidAsString[stringIndex] >= CHARACTER_LCASE_A AND GuidAsString[stringIndex] <= CHARACTER_LCASE_F)) THEN
+				RETURN;
+			END_IF
+	END_CASE
+END_FOR
+
+// Ensure exactly four dashes are present
+IF dashCount = 4 THEN
+	IsValidGuidString := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MakeReferenceTo" Id="{be9e1569-6b51-0754-2a6e-71b96c2561bd}" FolderPath="Customize\">
+      <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
+VAR_INPUT
+	ReferenceTarget : REFERENCE TO GUID;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[activeData REF= ReferenceTarget;
+SetMemberReference();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetMemberReference" Id="{01322abd-5a8f-056d-2d01-43568d1d02e9}" FolderPath="Customize\Protected\">
+      <Declaration><![CDATA[METHOD PROTECTED SetMemberReference
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_data1.MakeReferenceTo(activeData.Data1);
+_data2.MakeReferenceTo(activeData.Data2);
+_data3.MakeReferenceTo(activeData.Data3);
+_data4.MakeReferenceTo(activeData.Data4);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Size" Id="{ec957e79-d5d8-072f-2f93-411ae8d66711}" FolderPath="Core\">
+      <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
+      <Get Name="Get" Id="{10a09c91-107c-0a7f-189a-f7ee3ae63bf8}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Size := SIZEOF(activeData);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ToString" Id="{f11da0b8-78b9-07c9-0c2e-8a47a0542486}">
+      <Declaration><![CDATA[METHOD PUBLIC ToString : T_MAXSTRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ToString := GUID_TO_STRING(activeData);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TryDeserializeFrom" Id="{b2be9f04-b3f1-0daa-3c05-e45482daba90}" FolderPath="Customize\">
+      <Declaration><![CDATA[METHOD TryDeserializeFrom : BOOL
+VAR_INPUT
+	Deserializer : I_Deserializer;
+	Feedback : I_DeserializerFeedback;
+END_VAR
+VAR
+	localFeedback : DeserializerFeedback;
+	guidAsString : T_MAXSTRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// this customized version of TryDeserializeFrom allows for the use of string guids. 
+// if a string is not found, then it will try to deserialize from an object.
+IF Deserializer.TryGetString(guidAsString, localFeedback) THEN	
+	IF TryFromString(guidAsString) THEN
+		TryDeserializeFrom := TRUE;
+		RETURN;
+	END_IF
+	
+	Feedback.LogDeserializationFailedError('Invalid GUID String');	
+	RETURN;
+END_IF
+
+TryDeserializeFrom := SUPER^.TryDeserializeFrom(Deserializer, Feedback);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TryFromString" Id="{96928a2a-9a60-060f-248e-d842d07493ad}">
+      <Declaration><![CDATA[METHOD PUBLIC TryFromString : BOOL;
+VAR_INPUT
+	GuidAsString : T_MAXSTRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT IsValidGuidString(GuidAsString) THEN
+	RETURN;
+END_IF
+
+activeData := STRING_TO_GUID(GuidAsString);
+TryFromString := true;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TryMakeReferenceTo" Id="{4d97766e-fcc7-0f59-0ac1-13d7e1fb5ca5}" FolderPath="Customize\">
+      <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
+VAR_INPUT
+	Target : I_Datatype;
+END_VAR
+VAR
+	targetAsStruct : I_StructuredDatatype;
+	pTargetData : POINTER TO GUID;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT Target.TryResolveAsStructuredDatatype(targetAsStruct) THEN
+	RETURN;
+END_IF
+
+IF NOT (targetAsStruct.Identifier = Identifier) THEN
+	RETURN;
+END_IF
+
+pTargetData := Target.Address;
+activeData REF= pTargetData^;
+SetMemberReference();
+TryMakeReferenceTo := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Value" Id="{1a9d559e-1976-063e-3544-1cf806dcf2ef}" FolderPath="Customize\">
+      <Declaration><![CDATA[PROPERTY PUBLIC Value : REFERENCE TO GUID]]></Declaration>
+      <Get Name="Get" Id="{9b4a8b97-f8dd-0bf9-0709-b344d9445f45}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value REF= activeData;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

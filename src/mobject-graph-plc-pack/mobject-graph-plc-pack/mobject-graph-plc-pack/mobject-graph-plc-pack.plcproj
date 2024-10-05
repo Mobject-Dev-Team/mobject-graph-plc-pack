@@ -47,6 +47,9 @@
     <Compile Include="Datatypes\PlcDatatypePack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Datatypes\Structs\_GUID.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Nodes\PlcNodePack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
