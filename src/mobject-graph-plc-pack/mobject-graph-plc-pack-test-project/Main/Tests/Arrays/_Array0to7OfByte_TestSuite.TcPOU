@@ -219,7 +219,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[TEST('TestLowerBound');
 
-actual := _type.LowerBound;
+_type.TryGetLowerBound(1, actual);
 
 AssertEquals_DINT(
     Expected := Expected,
@@ -516,7 +516,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[TEST('TestUpperBound');
 
-actual := _type.UpperBound;
+_type.TryGetUpperBound(1, actual);
 
 AssertEquals_DINT(
     Expected := Expected,

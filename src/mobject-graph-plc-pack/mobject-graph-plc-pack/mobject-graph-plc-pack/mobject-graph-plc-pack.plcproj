@@ -39,11 +39,15 @@
     <Folder Include="Datatypes" />
     <Folder Include="Datatypes\Alias" />
     <Folder Include="Datatypes\Enums" />
+    <Folder Include="Datatypes\Arrays" />
     <Folder Include="Datatypes\Structs" />
     <Folder Include="Nodes" />
     <Folder Include="Nodes\Hardware" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datatypes\Arrays\_Array0To7OfByte.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Datatypes\PlcDatatypePack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
