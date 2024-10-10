@@ -99,6 +99,17 @@ END_VAR
         <ST><![CDATA[GetElementByIndex REF= elements[Index];]]></ST>
       </Implementation>
     </Method>
+    <Property Name="LowerBound" Id="{453c6172-b4f3-0a35-2e28-d91711e499d3}" FolderPath="Core\">
+      <Declaration><![CDATA[PROPERTY PUBLIC LowerBound : DINT]]></Declaration>
+      <Get Name="Get" Id="{a259ed7c-fbb8-0ebd-0d50-917543d3a4a4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[LowerBound := lBound;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="MakeReferenceTo" Id="{585232a2-8012-0a33-050b-e6ffac9c98fb}" FolderPath="Customize\">
       <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
 VAR_INPUT
@@ -173,38 +184,6 @@ END_WHILE
 enumerator.Dispose();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="TryGetLowerBound" Id="{ce5a2846-ce24-0420-1078-1b54c61a9433}" FolderPath="Core\">
-      <Declaration><![CDATA[METHOD PUBLIC TryGetLowerBound : BOOL
-VAR_INPUT
-	Dimention : DINT;
-	Destination : REFERENCE TO DINT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Dimention <> 1 THEN
-	RETURN;
-END_IF
-
-Destination := lbound;
-TryGetLowerBound := TRUE;]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="TryGetUpperBound" Id="{b07d2b86-8445-03bd-07aa-0be021ca9330}" FolderPath="Core\">
-      <Declaration><![CDATA[METHOD PUBLIC TryGetUpperBound : BOOL
-VAR_INPUT
-	Dimention : DINT;
-	Destination : REFERENCE TO DINT;
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF Dimention <> 1 THEN
-	RETURN;
-END_IF
-
-Destination := ubound;
-TryGetUpperBound := TRUE;]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="TryMakeReferenceTo" Id="{8118a94a-d581-0df5-1c91-af9dc17d8c7c}" FolderPath="Customize\">
       <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
 VAR_INPUT
@@ -229,6 +208,17 @@ SetElementReference();
 TryMakeReferenceTo := TRUE;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="UpperBound" Id="{b9ca7a58-1a32-03d4-2f05-d36fc128a0c8}" FolderPath="Core\">
+      <Declaration><![CDATA[PROPERTY PUBLIC UpperBound : DINT]]></Declaration>
+      <Get Name="Get" Id="{47f1fd8c-3b7b-0ba8-00d5-55c46be24e61}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[UpperBound := ubound;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Property Name="Value" Id="{d5d66595-f118-07c4-1422-0f7c568b089f}" FolderPath="Customize\">
       <Declaration><![CDATA[PROPERTY PUBLIC Value : REFERENCE TO ARRAY [lBound..uBound] OF BYTE;]]></Declaration>
       <Get Name="Get" Id="{d52e9d41-d6cc-01e4-245e-e2655019da15}">
