@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="_HRESULT" Id="{72a17a98-cc7f-49ef-9dd3-ffb7be4e211a}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'linkalways'} 
 {attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
@@ -14,9 +14,13 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Folder Name="Constructor" Id="{de40222d-6778-459a-bb19-4254012ad3da}" />
-    <Folder Name="Protected" Id="{207d39dd-beb6-487d-92f7-8fb014a1653d}" />
-    <Property Name="Address" Id="{dfb60c57-b0a6-4be3-8cfc-737df02bca39}">
+    <Folder Name="Core" Id="{235676e8-e0cb-0aad-20b2-946246352512}">
+      <Folder Name="Protected" Id="{207d39dd-beb6-487d-92f7-8fb014a1653d}" />
+    </Folder>
+    <Folder Name="Customize" Id="{8eb56376-008c-05e6-0be0-7be3858af601}">
+      <Folder Name="Constructor" Id="{de40222d-6778-459a-bb19-4254012ad3da}" />
+    </Folder>
+    <Property Name="Address" Id="{dfb60c57-b0a6-4be3-8cfc-737df02bca39}" FolderPath="Core\">
       <Declaration><![CDATA[PROPERTY PUBLIC Address : PVOID]]></Declaration>
       <Get Name="Get" Id="{83932da7-808b-4eae-bc5d-bcbb0d6f602c}">
         <Declaration><![CDATA[VAR
@@ -27,7 +31,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="ClearReference" Id="{3f2d0897-1169-45d0-b5b7-ec342beb91b8}">
+    <Method Name="ClearReference" Id="{3f2d0897-1169-45d0-b5b7-ec342beb91b8}" FolderPath="Core\">
       <Declaration><![CDATA[METHOD PUBLIC ClearReference
 VAR_INPUT
 END_VAR
@@ -37,7 +41,7 @@ END_VAR
 SetBaseDatatypeReference();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Clone" Id="{8d3523ad-19f9-44d1-af8c-47f88cffa8fa}">
+    <Method Name="Clone" Id="{8d3523ad-19f9-44d1-af8c-47f88cffa8fa}" FolderPath="Customize\">
       <Declaration><![CDATA[METHOD PUBLIC Clone : I_Datatype
 VAR
     pClone : POINTER TO _HRESULT;
@@ -49,7 +53,7 @@ Clone := pClone^;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="FB_init" Id="{99f15046-4899-41b2-ac3d-1e85d75b1d35}" FolderPath="Constructor\">
+    <Method Name="FB_init" Id="{99f15046-4899-41b2-ac3d-1e85d75b1d35}" FolderPath="Customize\Constructor\">
       <Declaration><![CDATA[METHOD FB_init : BOOL
 VAR_INPUT
 	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
@@ -63,7 +67,7 @@ SetBaseDatatypeReference();
 AddBaseDatatype(aliasBaseDatatype);]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Identifier" Id="{c1ca2e72-5b34-48af-abab-a4da689999a0}">
+    <Property Name="Identifier" Id="{c1ca2e72-5b34-48af-abab-a4da689999a0}" FolderPath="Customize\">
       <Declaration><![CDATA[PROPERTY PUBLIC Identifier : T_MAXSTRING]]></Declaration>
       <Get Name="Get" Id="{11e0a0e1-6bf1-41c1-b186-96098d982a16}">
         <Declaration><![CDATA[VAR
@@ -74,7 +78,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="MakeReferenceTo" Id="{897bf8fa-b6da-4451-bdac-0383e9264852}">
+    <Method Name="MakeReferenceTo" Id="{897bf8fa-b6da-4451-bdac-0383e9264852}" FolderPath="Customize\">
       <Declaration><![CDATA[METHOD PUBLIC MakeReferenceTo
 VAR_INPUT
 	ReferenceTarget : REFERENCE TO HRESULT;
@@ -85,7 +89,7 @@ END_VAR
 SetBaseDatatypeReference();]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetBaseDatatypeReference" Id="{973aaacc-b431-45d7-bcda-e425ee4dd0ef}" FolderPath="Protected\">
+    <Method Name="SetBaseDatatypeReference" Id="{973aaacc-b431-45d7-bcda-e425ee4dd0ef}" FolderPath="Core\Protected\">
       <Declaration><![CDATA[METHOD PROTECTED SetBaseDatatypeReference
 VAR_INPUT
 END_VAR
@@ -94,7 +98,7 @@ END_VAR
         <ST><![CDATA[aliasBaseDatatype.MakeReferenceTo(activeData);]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Size" Id="{af7c3aa7-35af-4023-95b3-bb905e3e50b2}">
+    <Property Name="Size" Id="{af7c3aa7-35af-4023-95b3-bb905e3e50b2}" FolderPath="Core\">
       <Declaration><![CDATA[PROPERTY PUBLIC Size : UDINT]]></Declaration>
       <Get Name="Get" Id="{63e6a7d7-a4a1-41e2-ab35-f717c3866c4e}">
         <Declaration><![CDATA[VAR
@@ -105,21 +109,16 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="TryMakeReferenceTo" Id="{4e30d1a9-a1d0-4537-ab05-3d5644f69d0e}">
+    <Method Name="TryMakeReferenceTo" Id="{4e30d1a9-a1d0-4537-ab05-3d5644f69d0e}" FolderPath="Customize\">
       <Declaration><![CDATA[METHOD TryMakeReferenceTo : BOOL
 VAR_INPUT
 	Target : I_Datatype;
 END_VAR
 VAR
-	targetAsAlias : I_AliasDatatype;
 	pTargetData : POINTER TO HRESULT;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT Target.TryResolveAsAliasDatatype(targetAsAlias) THEN
-	RETURN;
-END_IF
-
-IF targetAsAlias.Identifier <> Identifier THEN
+        <ST><![CDATA[IF NOT IsEquivalentTo(Target) THEN
 	RETURN;
 END_IF
 
@@ -129,7 +128,7 @@ SetBaseDatatypeReference();
 TryMakeReferenceTo := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <Property Name="Value" Id="{66a95d13-bcd7-45da-8840-f91e6a4bd783}">
+    <Property Name="Value" Id="{66a95d13-bcd7-45da-8840-f91e6a4bd783}" FolderPath="Customize\">
       <Declaration><![CDATA[PROPERTY PUBLIC Value : REFERENCE TO HRESULT]]></Declaration>
       <Get Name="Get" Id="{a32f3b0e-b8ff-4b54-8e11-c9c7a479cf0d}">
         <Declaration><![CDATA[VAR

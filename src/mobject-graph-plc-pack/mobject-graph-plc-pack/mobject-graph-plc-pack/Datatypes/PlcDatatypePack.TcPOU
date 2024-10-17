@@ -34,7 +34,6 @@ Datatypes.RegisterDatatype(_float);
 Datatypes.RegisterDatatype(_hresult);
 
 // enums
-
 Datatypes.RegisterDatatype(_e_TcEventClass);
 
 // structures
