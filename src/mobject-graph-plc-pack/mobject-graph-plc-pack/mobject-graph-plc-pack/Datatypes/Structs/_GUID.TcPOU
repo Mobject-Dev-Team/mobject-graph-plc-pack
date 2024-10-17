@@ -267,15 +267,10 @@ VAR_INPUT
 	Target : I_Datatype;
 END_VAR
 VAR
-	targetAsStruct : I_StructuredDatatype;
 	pTargetData : POINTER TO GUID;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT Target.TryResolveAsStructuredDatatype(targetAsStruct) THEN
-	RETURN;
-END_IF
-
-IF NOT (targetAsStruct.Identifier = Identifier) THEN
+        <ST><![CDATA[IF NOT IsEquivalentTo(Target) THEN
 	RETURN;
 END_IF
 
