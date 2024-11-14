@@ -1,6 +1,10 @@
 # Changelog
 
-## v0.14.0-alpha
+## v0.16.0-alpha
+
+- added support for mobject-graph v0.15.0
+
+## v0.15.0-alpha
 
 - added support for mobject-core v0.5.0
 - added support for mobject-graph v0.14.0

@@ -29,7 +29,7 @@
     <Released>false</Released>
     <Company>mobject</Company>
     <Title>mobject-graph-plc-pack</Title>
-    <ProjectVersion>0.15.0</ProjectVersion>
+    <ProjectVersion>0.16.0</ProjectVersion>
     <DefaultNamespace>mobject-graph-plc-pack</DefaultNamespace>
     <Placeholder>mobject-graph-plc-pack</Placeholder>
     <Author>mobject dev team</Author>
@@ -83,7 +83,7 @@
     <LibraryReference Include="mobject-core,0.5.0,mobject">
       <Namespace>mobject_core</Namespace>
     </LibraryReference>
-    <LibraryReference Include="mobject-graph,0.14.0,mobject">
+    <LibraryReference Include="mobject-graph,0.15.0,mobject">
       <Namespace>mobject_graph</Namespace>
     </LibraryReference>
   </ItemGroup>
