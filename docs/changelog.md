@@ -3,6 +3,7 @@
 ## v0.16.0-alpha
 
 - added support for mobject-graph v0.15.0
+- updated to support mobject-core v0.6.0
 
 ## v0.15.0-alpha
 
