@@ -1,11 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
   <POU Name="PlcNodePack" Id="{257fc325-f932-4b89-a50a-e9a0a38418f4}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'linkalways'} 
 {attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
 {attribute 'enable_dynamic_creation'}
 FUNCTION_BLOCK PlcNodePack IMPLEMENTS I_NodePack
 VAR
+    // Hardware
+    node_DigitalInput : Node_DigitalInput;
+    node_DigitalOutput : Node_DigitalOutput;
+    
+    // Logic
+    node_NOT : Node_NOT;
+    node_AND : Node_AND;
+    node_NAND : Node_NAND;
+    node_OR : Node_OR;
+    node_NOR : Node_NOR;
+    node_XOR : Node_XOR;
+    node_XNOR : Node_XNOR;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -18,7 +30,19 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[// Hardware
+NodeFactory.AddNodeAsPrototype('PLC/Hardware/DI', node_DigitalInput);
+NodeFactory.AddNodeAsPrototype('PLC/Hardware/DO', node_DigitalOutput);
+
+// Logic
+NodeFactory.AddNodeAsPrototype('PLC/Logic/NOT', node_NOT);
+NodeFactory.AddNodeAsPrototype('PLC/Logic/AND', node_AND);
+NodeFactory.AddNodeAsPrototype('PLC/Logic/NAND', node_NAND);
+NodeFactory.AddNodeAsPrototype('PLC/Logic/OR', node_OR);
+NodeFactory.AddNodeAsPrototype('PLC/Logic/NOR', node_NOR);
+NodeFactory.AddNodeAsPrototype('PLC/Logic/XOR', node_XOR);
+NodeFactory.AddNodeAsPrototype('PLC/Logic/XNOR', node_XNOR);
+]]></ST>
       </Implementation>
     </Method>
   </POU>

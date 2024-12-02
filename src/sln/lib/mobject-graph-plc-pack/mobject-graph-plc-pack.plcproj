@@ -43,6 +43,10 @@
     <Folder Include="Datatypes\Structs" />
     <Folder Include="Nodes" />
     <Folder Include="Nodes\Hardware" />
+    <Folder Include="Nodes\Hardware\Digital" />
+    <Folder Include="Nodes\Hardware\Analogue" />
+    <Folder Include="Nodes\Hardware\Base" />
+    <Folder Include="Nodes\Logic" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datatypes\Arrays\_Array0To7OfByte.TcPOU">
@@ -52,6 +56,36 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Datatypes\Structs\_GUID.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Hardware\Base\HardwareNode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Hardware\Digital\Node_DigitalInput.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Hardware\Digital\Node_DigitalOutput.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Logic\Node_OR.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Logic\Node_NOT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Logic\Node_AND.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Logic\Node_NOR.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Logic\Node_NAND.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Logic\Node_XOR.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Logic\Node_XNOR.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Nodes\PlcNodePack.TcPOU">
@@ -67,12 +101,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Datatypes\Structs\_TIMESTRUCT.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Nodes\Hardware\DigitalInputNode.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Nodes\Hardware\DigitalOutputNode.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcPack.TcPOU">
