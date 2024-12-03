@@ -7,8 +7,8 @@
 FUNCTION_BLOCK PlcNodePack IMPLEMENTS I_NodePack
 VAR
     // Hardware
-    node_DigitalInput : Node_DigitalInput;
-    node_DigitalOutput : Node_DigitalOutput;
+    //node_DigitalInput : Node_DigitalInput;
+    //node_DigitalOutput : Node_DigitalOutput;
     
     // Logic
     node_NOT : Node_NOT;
@@ -31,8 +31,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Hardware
-NodeFactory.AddNodeAsPrototype('PLC/Hardware/DI', node_DigitalInput);
-NodeFactory.AddNodeAsPrototype('PLC/Hardware/DO', node_DigitalOutput);
+//NodeFactory.AddNodeAsPrototype('PLC/Hardware/DI', node_DigitalInput);
+//NodeFactory.AddNodeAsPrototype('PLC/Hardware/DO', node_DigitalOutput);
 
 // Logic
 NodeFactory.AddNodeAsPrototype('PLC/Logic/NOT', node_NOT);

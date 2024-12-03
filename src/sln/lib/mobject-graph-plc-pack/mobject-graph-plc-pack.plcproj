@@ -60,12 +60,15 @@
     </Compile>
     <Compile Include="Nodes\Hardware\Base\HardwareNode.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Nodes\Hardware\Digital\Node_DigitalInput.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Nodes\Hardware\Digital\Node_DigitalOutput.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="Nodes\Logic\Node_OR.TcPOU">
       <SubType>Code</SubType>
