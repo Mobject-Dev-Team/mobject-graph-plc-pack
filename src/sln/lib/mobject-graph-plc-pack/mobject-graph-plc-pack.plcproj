@@ -183,6 +183,9 @@
         </Parameter>
       </Parameters>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="mobject-graph-plc-pack.tmc">
