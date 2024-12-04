@@ -38,7 +38,7 @@ AddOutput('out', out);
       </Implementation>
     </Method>
     <Method Name="OnExecute" Id="{16a72dc6-153b-0d5f-1117-743871ed3a46}">
-      <Declaration><![CDATA[METHOD PROTECTED OnExecute : HRESULT
+      <Declaration><![CDATA[METHOD PROTECTED OnExecute
 VAR
 END_VAR]]></Declaration>
       <Implementation>

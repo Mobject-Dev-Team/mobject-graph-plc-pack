@@ -24,7 +24,7 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <Method Name="OnExecute" Id="{68571122-a377-4d1a-96e4-62df1bbbcbe5}">
-      <Declaration><![CDATA[METHOD PROTECTED OnExecute : HRESULT
+      <Declaration><![CDATA[METHOD PROTECTED OnExecute
 VAR
 END_VAR]]></Declaration>
       <Implementation>
