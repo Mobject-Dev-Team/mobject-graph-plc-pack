@@ -16,10 +16,6 @@ VAR
     node_NOR : Node_NOR;
     node_XOR : Node_XOR;
     node_XNOR : Node_XNOR;
-
-    // Hardware
-    //node_DigitalInput : Node_DigitalInput;
-    //node_DigitalOutput : Node_DigitalOutput;
 END_VAR
 ]]></Declaration>
     <Implementation>
