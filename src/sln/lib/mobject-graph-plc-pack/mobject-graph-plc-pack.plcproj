@@ -42,9 +42,30 @@
     <Folder Include="Datatypes\Arrays" />
     <Folder Include="Datatypes\Structs" />
     <Folder Include="Nodes" />
+    <Folder Include="Nodes\Converter\BOOL_TO_" />
+    <Folder Include="Nodes\Converter\BYTE_TO_" />
+    <Folder Include="Nodes\Converter\DATE_TO_" />
+    <Folder Include="Nodes\Converter\DINT_TO_" />
+    <Folder Include="Nodes\Converter\DT_TO_" />
+    <Folder Include="Nodes\Converter\DWORD_TO_" />
+    <Folder Include="Nodes\Converter\INT_TO_" />
+    <Folder Include="Nodes\Converter\LINT_TO_" />
+    <Folder Include="Nodes\Converter\LREAL_TO_" />
+    <Folder Include="Nodes\Converter\LWORD_TO_" />
+    <Folder Include="Nodes\Converter\WORD_TO_" />
+    <Folder Include="Nodes\Converter\USINT_TO_" />
+    <Folder Include="Nodes\Converter\ULINT_TO_" />
+    <Folder Include="Nodes\Converter\UINT_TO_" />
+    <Folder Include="Nodes\Converter\UDINT_TO_" />
+    <Folder Include="Nodes\Converter\TOD_TO_" />
+    <Folder Include="Nodes\Converter\TIME_TO_" />
+    <Folder Include="Nodes\Converter\STRING_TO_" />
+    <Folder Include="Nodes\Converter\SINT_TO_" />
+    <Folder Include="Nodes\Converter\REAL_TO_" />
     <Folder Include="Nodes\Hardware" />
     <Folder Include="Nodes\Hardware\Digital" />
     <Folder Include="Nodes\Logic" />
+    <Folder Include="Nodes\Converter" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datatypes\Arrays\_Array0To7OfByte.TcPOU">
@@ -54,6 +75,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Datatypes\Structs\_GUID.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\DINT_TO_\Node_DINT_TO_LREAL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\DINT_TO_\Node_DINT_TO_REAL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\LREAL_TO_\Node_LREAL_TO_UDINT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\LREAL_TO_\Node_LREAL_TO_DINT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\REAL_TO_\Node_REAL_TO_UDINT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\REAL_TO_\Node_REAL_TO_DINT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\UDINT_TO_\Node_UDINT_TO_REAL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Converter\UDINT_TO_\Node_UDINT_TO_LREAL.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Nodes\Hardware\Digital\Node_DigitalInput.TcPOU">
