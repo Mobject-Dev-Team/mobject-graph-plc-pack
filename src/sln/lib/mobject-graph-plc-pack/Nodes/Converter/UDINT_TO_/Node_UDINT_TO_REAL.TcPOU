@@ -8,7 +8,7 @@ FUNCTION_BLOCK FINAL Node_UDINT_TO_REAL EXTENDS Node
 VAR
 	in : _UDINT(0);
 	out : _REAL(0.0);
-	successd : _BOOL(FALSE);
+	success : _BOOL(FALSE);
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -33,7 +33,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[AddParameter('in', in);
 AddOutput('out', out);
-AddOutput('success', successd);]]></ST>
+AddOutput('success', success);]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnExecute" Id="{42c2cd12-f6b0-0b73-0bc5-e80f1aed40d7}">
@@ -41,7 +41,7 @@ AddOutput('success', successd);]]></ST>
 VAR
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[successd.Value := TryConvert_UDINT_TO_REAL(in.Value, out.Value);]]></ST>
+        <ST><![CDATA[success.Value := TryConvert_UDINT_TO_REAL(in.Value, out.Value);]]></ST>
       </Implementation>
     </Method>
   </POU>

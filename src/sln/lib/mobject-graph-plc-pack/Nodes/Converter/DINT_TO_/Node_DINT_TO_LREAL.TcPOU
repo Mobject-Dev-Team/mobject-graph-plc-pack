@@ -8,7 +8,7 @@ FUNCTION_BLOCK FINAL Node_DINT_TO_LREAL EXTENDS Node
 VAR
 	in : _DINT(0);
 	out : _LREAL(0.0);
-	successd : _BOOL(FALSE);
+	success : _BOOL(FALSE);
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -33,7 +33,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[AddParameter('in', in);
 AddOutput('out', out);
-AddOutput('success', successd);]]></ST>
+AddOutput('success', success);]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnExecute" Id="{a56840a9-1f97-0491-1429-962b579d0048}">
@@ -41,7 +41,7 @@ AddOutput('success', successd);]]></ST>
 VAR
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[successd.Value := TryConvert_DINT_TO_LREAL(in.Value, out.Value);]]></ST>
+        <ST><![CDATA[success.Value := TryConvert_DINT_TO_LREAL(in.Value, out.Value);]]></ST>
       </Implementation>
     </Method>
   </POU>
