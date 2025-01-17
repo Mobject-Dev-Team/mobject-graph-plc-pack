@@ -30,7 +30,7 @@ VAR_INPUT
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[AddInput('in', in);
+        <ST><![CDATA[AddParameter('in', in);
 AddOutput('out', out);]]></ST>
       </Implementation>
     </Method>
