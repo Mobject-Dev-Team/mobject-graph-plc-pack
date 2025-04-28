@@ -66,7 +66,7 @@ NodeFactory.AddNodeAsPrototype('PLC/Logic/XNOR', node_XNOR);
 //NodeFactory.AddNodeAsPrototype('PLC/Hardware/DO', node_DigitalOutput);
 
 // TwinCAT
-NodeFactory.AddNodeAsPrototype('PLC/TwinCAT/TwinCAT Status', node_TwinCATStatus);]]></ST>
+//NodeFactory.AddNodeAsPrototype('PLC/TwinCAT/TwinCAT Status', node_TwinCATStatus);]]></ST>
       </Implementation>
     </Method>
   </POU>
