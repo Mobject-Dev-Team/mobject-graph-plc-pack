@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="Node_TwinCATStatus" Id="{2dff85fe-ee08-08d3-27e1-949ba152002e}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK FINAL Node_TwinCATStatus EXTENDS Node
+VAR
+	lastCycleTime : _ULINT(0);
+	averageCycleTime : _ULINT(0);
+	usedMemory : _DWORD(0);
+	avaliableMemory : _DWORD(0);
+	maximumMemory : _DWORD(0);
+	
+	// node variables
+	getRouterStatusInfo : FB_GetRouterStatusInfo;
+	tcRouterStatusInfo : ST_TcRouterStatusInfo;
+	cycleTimes : ARRAY [0..9] OF ULINT := [0,0,0,0,0,0,0,0,0,0];
+    cycleTimeIndex : INT := 0;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{d9a7faa9-9e2d-0330-2ca2-84dbff55f1e4}" />
+    <Method Name="Clone" Id="{e26480f6-fd08-0b03-1d91-d2546c6b1c38}">
+      <Declaration><![CDATA[METHOD PUBLIC  Clone : I_Node
+VAR
+	pNode : POINTER TO Node_TwinCATStatus;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pNode := __NEW(Node_TwinCATStatus);
+Clone := pNode^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{35d23117-7390-03f8-308e-90ff975dcf6a}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddContent('lastCycleTime', lastCycleTime);
+AddContent('averageCycleTime', averageCycleTime);
+AddContent('usedMemory', usedMemory);
+AddContent('avaliableMemory', avaliableMemory);
+AddContent('maximumMemory', maximumMemory);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{31197f36-d800-0c24-0503-77d4391bbbb3}">
+      <Declaration><![CDATA[METHOD PROTECTED OnExecute
+VAR
+	i : INT;
+    sum : ULINT := 0;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// memory 
+
+IF NOT getRouterStatusInfo.bBusy THEN
+	tcRouterStatusInfo := getRouterStatusInfo.info;
+END_IF
+
+getRouterStatusInfo(
+	sNetId:= '' ,
+	bExecute:= NOT getRouterStatusInfo.bBusy, 
+	tTimeout:= T#5S, 
+	bBusy=> , 
+	bError=> , 
+	nErrID=> , 
+	info=> 
+);
+
+usedMemory.Value := tcRouterStatusInfo.maxMem - tcRouterStatusInfo.maxMemAvail;
+avaliableMemory.Value := tcRouterStatusInfo.maxMemAvail;
+maximumMemory.Value := tcRouterStatusInfo.maxMem;
+
+// cycle time
+
+cycleTimes[cycleTimeIndex] := F_GetTaskTotalTime(0);
+cycleTimeIndex := (cycleTimeIndex + 1) MOD 10;
+
+FOR i := 0 TO 9 DO
+    sum := sum + cycleTimes[i];
+END_FOR
+
+lastCycleTime.Value := F_GetTaskTotalTime(0);
+averageCycleTime.Value := sum / 10;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -66,6 +66,7 @@
     <Folder Include="Nodes\Hardware\Digital" />
     <Folder Include="Nodes\Logic" />
     <Folder Include="Nodes\Converter" />
+    <Folder Include="Nodes\TwinCAT" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datatypes\Arrays\_Array0To7OfByte.TcPOU">
@@ -143,6 +144,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Datatypes\Structs\_TIMESTRUCT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\TwinCAT\Node_TwinCATStatus.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcPack.TcPOU">

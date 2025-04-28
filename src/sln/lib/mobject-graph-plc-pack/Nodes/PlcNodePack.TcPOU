@@ -27,6 +27,9 @@ VAR
     node_NOR : Node_NOR;
     node_XOR : Node_XOR;
     node_XNOR : Node_XNOR;
+	
+	// TwinCAT
+	node_TwinCATStatus : Node_TwinCATStatus;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -61,7 +64,9 @@ NodeFactory.AddNodeAsPrototype('PLC/Logic/XNOR', node_XNOR);
 // Hardware
 //NodeFactory.AddNodeAsPrototype('PLC/Hardware/DI', node_DigitalInput);
 //NodeFactory.AddNodeAsPrototype('PLC/Hardware/DO', node_DigitalOutput);
-]]></ST>
+
+// TwinCAT
+NodeFactory.AddNodeAsPrototype('PLC/TwinCAT/TwinCAT Status', node_TwinCATStatus);]]></ST>
       </Implementation>
     </Method>
   </POU>
