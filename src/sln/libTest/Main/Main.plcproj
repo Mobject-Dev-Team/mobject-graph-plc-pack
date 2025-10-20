@@ -9,7 +9,7 @@
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>Main</Name>
-    <ProgramVersion>3.1.4024.0</ProgramVersion>
+    <ProgramVersion>3.1.4026.19</ProgramVersion>
     <Application>{58c84f05-5544-4504-8a37-b990e3856b88}</Application>
     <TypeSystem>{0cc909f9-6e4e-415f-98a6-5034e20141d7}</TypeSystem>
     <Implicit_Task_Info>{138a9422-c678-4f4d-a756-b7caee36ea9a}</Implicit_Task_Info>
@@ -81,10 +81,10 @@
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="mobject-core,0.7.0,mobject">
+    <LibraryReference Include="mobject-core,0.8.0,mobject">
       <Namespace>mobject_core</Namespace>
     </LibraryReference>
-    <LibraryReference Include="mobject-graph-plc-pack,0.17.0,mobject">
+    <LibraryReference Include="mobject-graph-plc-pack,0.18.0,mobject">
       <Namespace>mobject_graph_plc_pack</Namespace>
     </LibraryReference>
   </ItemGroup>
