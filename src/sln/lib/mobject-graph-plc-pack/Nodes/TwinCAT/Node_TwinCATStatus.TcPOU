@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.13">
   <POU Name="Node_TwinCATStatus" Id="{2dff85fe-ee08-08d3-27e1-949ba152002e}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'linkalways'} 
 {attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
 {attribute 'enable_dynamic_creation'}
 FUNCTION_BLOCK FINAL Node_TwinCATStatus EXTENDS Node
 VAR
-	lastCycleTime : _ULINT(0);
-	averageCycleTime : _ULINT(0);
+	lastPlcCycleTime : _ULINT(0);
+	averagePlcCycleTime : _ULINT(0);
 	usedMemory : _DWORD(0);
 	avaliableMemory : _DWORD(0);
 	maximumMemory : _DWORD(0);
@@ -39,8 +39,8 @@ VAR_INPUT
 	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[AddContent('lastCycleTime', lastCycleTime);
-AddContent('averageCycleTime', averageCycleTime);
+        <ST><![CDATA[AddContent('lastCycleTime', lastPlcCycleTime);
+AddContent('averageCycleTime', averagePlcCycleTime);
 AddContent('usedMemory', usedMemory);
 AddContent('avaliableMemory', avaliableMemory);
 AddContent('maximumMemory', maximumMemory);]]></ST>
@@ -83,8 +83,8 @@ FOR i := 0 TO 9 DO
     sum := sum + cycleTimes[i];
 END_FOR
 
-lastCycleTime.Value := F_GetTaskTotalTime(0);
-averageCycleTime.Value := sum / 10;]]></ST>
+lastPlcCycleTime.Value := F_GetTaskTotalTime(0);
+averagePlcCycleTime.Value := sum / 10;]]></ST>
       </Implementation>
     </Method>
   </POU>

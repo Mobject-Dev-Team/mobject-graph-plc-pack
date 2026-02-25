@@ -9,7 +9,7 @@
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>mobject_graph_plc_pack</Name>
-    <ProgramVersion>3.1.4026.19</ProgramVersion>
+    <ProgramVersion>3.1.4026.20</ProgramVersion>
     <Application>{ab0a03e4-2a66-462b-ac1f-44e88bef4f0e}</Application>
     <TypeSystem>{03fc8bed-e1a0-4250-aad7-0d56ae20aefa}</TypeSystem>
     <Implicit_Task_Info>{51926b74-dafb-4e68-a91d-b76c1b33054f}</Implicit_Task_Info>
