@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
   <POU Name="PlcNodePack" Id="{257fc325-f932-4b89-a50a-e9a0a38418f4}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'linkalways'} 
 {attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
 {attribute 'enable_dynamic_creation'}
-FUNCTION_BLOCK PlcNodePack IMPLEMENTS I_NodePack
+FUNCTION_BLOCK PlcNodePack
 VAR
     // Conversion
 	// DINT_TO
@@ -27,6 +27,21 @@ VAR
     node_NOR : Node_NOR;
     node_XOR : Node_XOR;
     node_XNOR : Node_XNOR;
+	
+	// TwinCAT
+	node_TwinCATStatus : Node_TwinCATStatus;
+	
+	// Strings
+	node_CONCAT : Node_CONCAT;
+    node_DELETE : Node_DELETE;
+    node_FIND : Node_FIND;
+    node_INSERT : Node_INSERT;
+    node_LEFT : Node_LEFT;
+    node_LEN : Node_LEN;
+    node_MID : Node_MID;
+	node_REPLACE : Node_REPLACE;
+    node_RIGHT : Node_RIGHT;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -61,7 +76,20 @@ NodeFactory.AddNodeAsPrototype('PLC/Logic/XNOR', node_XNOR);
 // Hardware
 //NodeFactory.AddNodeAsPrototype('PLC/Hardware/DI', node_DigitalInput);
 //NodeFactory.AddNodeAsPrototype('PLC/Hardware/DO', node_DigitalOutput);
-]]></ST>
+
+// TwinCAT
+//NodeFactory.AddNodeAsPrototype('PLC/TwinCAT/TwinCAT Status', node_TwinCATStatus);
+
+// Strings
+NodeFactory.AddNodeAsPrototype('PLC/Strings/CONCAT', node_CONCAT);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/DELETE', node_DELETE);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/FIND', node_FIND);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/INSERT', node_INSERT);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/LEFT', node_LEFT);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/LEN', node_LEN);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/MID', node_MID);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/REPLACE', node_REPLACE);
+NodeFactory.AddNodeAsPrototype('PLC/Strings/RIGHT', node_RIGHT);]]></ST>
       </Implementation>
     </Method>
   </POU>
