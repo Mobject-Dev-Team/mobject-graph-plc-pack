@@ -28,6 +28,11 @@ VAR
     node_XOR : Node_XOR;
     node_XNOR : Node_XNOR;
 	
+	// Flow
+	nodeIf : Node_If;
+	nodeIfMerge : Node_if_merge;
+	nodeForNext : Node_ForNext;
+	
 	// TwinCAT
 	node_TwinCATStatus : Node_TwinCATStatus;
 	
@@ -41,6 +46,9 @@ VAR
     node_MID : Node_MID;
 	node_REPLACE : Node_REPLACE;
     node_RIGHT : Node_RIGHT;
+	
+	// variable
+	node_SetByRef : Node_SetByRef;
 	
 END_VAR
 ]]></Declaration>
@@ -63,6 +71,11 @@ NodeFactory.AddNodeAsPrototype('PLC/Convert/REAL/REAL_TO_DINT', node_REAL_TO_DIN
 NodeFactory.AddNodeAsPrototype('PLC/Convert/REAL/REAL_TO_UDINT', node_REAL_TO_UDINT);
 NodeFactory.AddNodeAsPrototype('PLC/Convert/UDINT/UDINT_TO_LREAL', node_UDINT_TO_LREAL);
 NodeFactory.AddNodeAsPrototype('PLC/Convert/UDINT/UDINT_TO_REAL', node_UDINT_TO_REAL);
+
+// flow 
+NodeFactory.AddNodeAsPrototype('PLC/Flow/IF',nodeIf);
+NodeFactory.AddNodeAsPrototype('PLC/Flow/IF_Merge', nodeIfMerge);
+NodeFactory.AddNodeAsPrototype('PLC/Flow/For', nodeForNext);
 
 // Logic
 NodeFactory.AddNodeAsPrototype('PLC/Logic/NOT', node_NOT);
@@ -89,7 +102,11 @@ NodeFactory.AddNodeAsPrototype('PLC/Strings/LEFT', node_LEFT);
 NodeFactory.AddNodeAsPrototype('PLC/Strings/LEN', node_LEN);
 NodeFactory.AddNodeAsPrototype('PLC/Strings/MID', node_MID);
 NodeFactory.AddNodeAsPrototype('PLC/Strings/REPLACE', node_REPLACE);
-NodeFactory.AddNodeAsPrototype('PLC/Strings/RIGHT', node_RIGHT);]]></ST>
+NodeFactory.AddNodeAsPrototype('PLC/Strings/RIGHT', node_RIGHT);
+
+// Variable
+//NodeFactory.AddNodeAsPrototype('PLC/Variable/SetByRef', node_SetByRef);
+]]></ST>
       </Implementation>
     </Method>
   </POU>

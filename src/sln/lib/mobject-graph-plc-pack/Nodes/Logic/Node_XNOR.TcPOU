@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
   <POU Name="Node_XNOR" Id="{b977ac3a-1e62-0a9d-0e17-d553ba31802e}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'linkalways'} 
 {attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
@@ -34,7 +34,8 @@ END_VAR]]></Declaration>
         <ST><![CDATA[AddParameter('in1', in1);
 AddParameter('in2', in2);
 AddOutput('out', out);
-]]></ST>
+
+this^.Metadatum.AddBoolAsMetadata('deprecated', true);]]></ST>
       </Implementation>
     </Method>
     <Method Name="OnExecute" Id="{16a72dc6-153b-0d5f-1117-743871ed3a46}">

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <POU Name="Node_IF_Merge" Id="{964e1661-d60e-0a4b-1f4e-75ef79c4e12a}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Node_IF_Merge EXTENDS Node
+VAR
+	selectA : TriggerWatchEventPortAction();
+	selectB : TriggerWatchEventPortAction();
+	a : _ANY();
+	b : _ANY();
+	out  : _ANY();
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{6f6cd49b-961d-0037-2624-e1c632878f8d}" />
+    <Method Name="Clone" Id="{63e4b32c-0e90-08a7-0632-cec772f871e4}">
+      <Declaration><![CDATA[METHOD PUBLIC  Clone : I_Node
+VAR_INPUT
+END_VAR
+VAR
+	pNode : POINTER TO Node_IF_Merge;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pNode := __NEW(Node_IF_Merge);
+Clone := pNode^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{17a0dd20-a670-05c1-3a2f-dc53f679a532}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddEventInput('selectA', selectA);
+AddEventInput('selectB', selectB);
+AddInputWithGroup('a',a,'T');
+AddInputWithGroup('b',b,'T');
+AddOutputWithGroup('out',out,'T');
+
+THIS^.Metadatum.AddBoolAsMetadata('development', TRUE);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{a46c70c1-760c-096d-27e3-3378e7c17684}">
+      <Declaration><![CDATA[METHOD PROTECTED  OnExecute]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF selectA.WasTriggered THEN
+	out.TryCopyFrom(a);
+END_IF
+
+IF selectB.WasTriggered THEN
+	out.TryCopyFrom(b);
+END_IF
+
+selectA.ResetWatch();
+selectB.ResetWatch();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

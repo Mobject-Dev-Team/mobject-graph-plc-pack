@@ -29,7 +29,7 @@
     <Released>false</Released>
     <Company>mobject</Company>
     <Title>mobject-graph-plc-pack</Title>
-    <ProjectVersion>0.18.0</ProjectVersion>
+    <ProjectVersion>0.19.0</ProjectVersion>
     <DefaultNamespace>mobject-graph-plc-pack</DefaultNamespace>
     <Placeholder>mobject-graph-plc-pack</Placeholder>
     <Author>mobject dev team</Author>
@@ -67,6 +67,8 @@
     <Folder Include="Nodes\Hardware\Digital" />
     <Folder Include="Nodes\Logic" />
     <Folder Include="Nodes\Converter" />
+    <Folder Include="Nodes\Flow" />
+    <Folder Include="Nodes\Variable" />
     <Folder Include="Nodes\Strings" />
     <Folder Include="Nodes\TwinCAT" />
   </ItemGroup>
@@ -102,6 +104,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Nodes\Converter\UDINT_TO_\Node_UDINT_TO_LREAL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Flow\Node_ForNext.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Flow\Node_IF.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nodes\Flow\Node_IF_Merge.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Nodes\Hardware\Digital\Node_DigitalInput.TcPOU">
@@ -178,15 +189,18 @@
     <Compile Include="Nodes\TwinCAT\Node_TwinCATStatus.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Nodes\Variable\Node_SetByRef.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PlcPack.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="mobject-core,0.9.0,mobject">
+    <LibraryReference Include="mobject-core,0.10.0,mobject">
       <Namespace>mobject_core</Namespace>
     </LibraryReference>
-    <LibraryReference Include="mobject-graph,0.17.0,mobject">
+    <LibraryReference Include="mobject-graph,0.18.0,mobject">
       <Namespace>mobject_graph</Namespace>
     </LibraryReference>
   </ItemGroup>

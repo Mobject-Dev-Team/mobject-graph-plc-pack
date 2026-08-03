@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4026.18">
+  <POU Name="Node_ForNext" Id="{904d3e48-aa6a-030b-2d93-31c0574ba0a3}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'linkalways'} 
+{attribute 'no_explicit_call' := 'This FB is a CLASS and must be accessed using methods or properties'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Node_ForNext EXTENDS Node
+VAR
+	startValue : _DINT(0);
+	endValue : _DINT(1);
+	step : _DINT(1);	
+	doEvent : I_EventOutputPort := AddEventOutput('do');
+	index : _DINT(0);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Constructor" Id="{c7892f4e-02f0-0e33-346e-dc23a362671a}" />
+    <Method Name="Clone" Id="{9258450b-229d-07c5-014e-8fa6dd34bb80}">
+      <Declaration><![CDATA[METHOD PUBLIC  Clone : I_Node
+VAR_INPUT
+END_VAR
+VAR
+	pNode : POINTER TO Node_ForNext;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pNode := __NEW(Node_ForNext);
+Clone := pNode^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{3c86c433-a949-0bc0-1a76-ef8ee8f9bbde}" FolderPath="Constructor\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddParameter('start', startValue);
+AddParameter('end', endValue);
+AddParameter('step', step);
+AddOutput('index', index);
+
+THIS^.Metadatum.AddBoolAsMetadata('development', TRUE);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{e0aea353-6b8f-0dd9-0ae1-759c3c9067a9}">
+      <Declaration><![CDATA[METHOD PROTECTED  OnExecute
+VAR
+	i : DINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := startValue.Value TO endValue.Value BY step.Value DO
+	index.Value := i;
+	doEvent.Trigger();
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
