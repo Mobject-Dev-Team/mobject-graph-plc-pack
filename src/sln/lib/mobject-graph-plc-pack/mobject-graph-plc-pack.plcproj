@@ -29,7 +29,7 @@
     <Released>false</Released>
     <Company>mobject</Company>
     <Title>mobject-graph-plc-pack</Title>
-    <ProjectVersion>0.20.0</ProjectVersion>
+    <ProjectVersion>0.20.1</ProjectVersion>
     <DefaultNamespace>mobject-graph-plc-pack</DefaultNamespace>
     <Placeholder>mobject-graph-plc-pack</Placeholder>
     <Author>mobject dev team</Author>
