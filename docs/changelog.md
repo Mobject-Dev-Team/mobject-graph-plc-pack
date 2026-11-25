@@ -2,7 +2,7 @@
 
 ## v0.20.1-alpha
 
-- array values set from the editor now reach the PLC: an array datatype (`_Array0To7OfByte`) reported every deserialization as failed, because `TryDeserializeArrayValues` never returned TRUE, so a Literal of that type never passed the new value on (it arrived as zeros), with no alarm. It now returns TRUE when every element was read.
+- `_Array0To7OfByte`: `TryDeserializeArrayValues` never returned TRUE, so every array deserialization reported failure even though the elements were read (Literal values still arrived, verified on hardware). It now returns TRUE when every element was read and stops at the first element that fails.
 
 ## v0.20.0-alpha
 
