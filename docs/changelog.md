@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.20.1-alpha
+
+- `_Array0To7OfByte`: `TryDeserializeArrayValues` never returned TRUE, so every array deserialization reported failure even though the elements were read (Literal values still arrived, verified on hardware). It now returns TRUE when every element was read and stops at the first element that fails.
+
 ## v0.20.0-alpha
 
 - added support for mobject-graph v0.19.0 (graph function blocks)
